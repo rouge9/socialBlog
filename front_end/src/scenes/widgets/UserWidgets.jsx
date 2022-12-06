@@ -12,7 +12,6 @@ import FlexBetween from "../../components/FlexBetween";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { palette } from "@mui/system";
 
 export default function UserWidget({ userId, picturePath }) {
   const [user, setUser] = useState(null);

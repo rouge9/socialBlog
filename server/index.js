@@ -32,17 +32,18 @@ app.use(morgan("comman"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // File stroage
 const storage = multer.diskStorage({
-  destination: (req, file, cd) => {
-    cd(null, "public/assets");
+  destination: function (req, file, cb) {
+    cb(null, "public/assets");
   },
-  filename: (req, file, cb) => {
+  filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 // Routes with file upload
 app.post("/api/auth/register", upload.single("picture"), register);
