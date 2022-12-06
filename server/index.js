@@ -35,7 +35,7 @@ app.use(cors());
 
 // File stroage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (req, file, cd) => {
     cd(null, "public/assets");
   },
   filename: (req, file, cb) => {
@@ -45,12 +45,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Routes with file upload
-app.post("/api/upload", upload.single("file"), register);
-app.post("/api/upload", upload.single("file"), verifyToken, createPost);
+app.post("/api/auth/register", upload.single("picture"), register);
+app.post("/api/posts", verifyToken, upload.single("picture"), createPost);
 
-// Routes
-app.use("/api/users", userRoutes);
+/* ROUTES */
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 /* MONGOOSE SETUP */
