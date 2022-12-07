@@ -35,20 +35,23 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
+    const response = await fetch(
+      `http://localhost:3001/api/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: loggedInUserId }),
+      }
+    );
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
 
   return (
-    <WidgetWrapper m="2rem 0">
+    <WidgetWrapper gap="0.5rem" p="0.5rem 0.5rem 1.1rem 0.5rem" m="2rem 0">
       <Friend
         friendId={postUserId}
         name={name}

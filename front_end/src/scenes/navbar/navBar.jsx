@@ -30,7 +30,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  const isNonMobileScreens = useMediaQuery("(min-width: 700px)");
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
@@ -134,8 +134,8 @@ const Navbar = () => {
           bottom="0"
           height="100%"
           zIndex="10"
-          maxWidth="500px"
-          minWidth="300px"
+          maxWidth="300px"
+          minWidth="100px"
           backgroundColor={background}
         >
           {/* CLOSE ICON */}

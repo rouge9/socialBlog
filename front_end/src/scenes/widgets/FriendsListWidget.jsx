@@ -1,9 +1,9 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import Friend from "../../components/Friend";
+import Friends from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFriends } from "../../state";
+import { setFollowers } from "../../state";
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const FriendListWidget = ({ userId }) => {
       }
     );
     const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+    dispatch(setFollowers({ friends: data }));
   };
 
   useEffect(() => {
@@ -28,18 +28,18 @@ const FriendListWidget = ({ userId }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper gap="0.5rem" p="0.5rem 1.1rem 1.1rem 1.1rem">
       <Typography
         color={palette.neutral.dark}
         variant="h5"
         fontWeight="500"
         sx={{ mb: "1.5rem" }}
       >
-        Friend List
+        Friends List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
         {friends.map((friend) => (
-          <Friend
+          <Friends
             key={friend._id}
             friendId={friend._id}
             name={`${friend.firstName} ${friend.lastName}`}
