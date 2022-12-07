@@ -246,7 +246,7 @@ const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              {isLogin ? "login" : "register"}
             </Button>
             <Typography
               onClick={() => {
