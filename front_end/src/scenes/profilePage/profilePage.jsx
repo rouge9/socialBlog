@@ -16,10 +16,13 @@ export default function ProfilePage() {
   const tokens = useSelector((state) => state.token);
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/api/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${tokens}` },
-    });
+    const response = await fetch(
+      `https://socio-blog-backend.vercel.app/api/users/${userId}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${tokens}` },
+      }
+    );
     const data = await response.json();
     setUser(data);
   };

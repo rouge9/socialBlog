@@ -36,7 +36,7 @@ const PostWidget = ({
 
   const patchLike = async () => {
     const response = await fetch(
-      `http://localhost:3001/api/posts/${postId}/like`,
+      `https://socio-blog-backend.vercel.app/api/posts/${postId}/like`,
       {
         method: "PATCH",
         headers: {
@@ -67,7 +67,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`https://socio-blog-backend.vercel.app/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">
