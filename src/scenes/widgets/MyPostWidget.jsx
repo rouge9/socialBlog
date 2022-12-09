@@ -40,12 +40,12 @@ const MyPostWidget = ({ picturePath }) => {
   const handlePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
-    formData.append("description", post);
+    formData.append("discription", post);
+    console.log(post);
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-
     const response = await fetch(
       `https://socio-blog-backend.vercel.app/api/posts`,
       {
