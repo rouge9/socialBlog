@@ -33,7 +33,8 @@ export default function UserWidget({ userId, picturePath }) {
 
   const getUser = async () => {
     const response = await fetch(
-      `https://socio-blog-backend.vercel.app/api/users/${userId}`,
+      // `https://socio-blog-backend.vercel.app/api/users/${userId}`,
+      `http://localhost:6001/api/users/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

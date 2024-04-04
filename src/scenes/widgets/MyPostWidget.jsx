@@ -47,7 +47,8 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
     const response = await fetch(
-      `https://socio-blog-backend.vercel.app/api/posts`,
+      // `https://socio-blog-backend.vercel.app/api/posts`,
+      `http://localhost:6001/api/posts`,
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },

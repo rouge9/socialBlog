@@ -22,7 +22,7 @@ const registerSchema = yup.object().shape({
   password: yup.string().required("required"),
   location: yup.string().required("required"),
   occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
+  picture: yup.string(),
 });
 
 const loginSchema = yup.object().shape({
@@ -62,7 +62,8 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "https://socio-blog-backend.vercel.app/api/auth/register",
+      // "https://socio-blog-backend.vercel.app/api/auth/register",
+      "http://localhost:6001/api/auth/register",
       {
         method: "POST",
         body: formData,
@@ -78,7 +79,8 @@ const Form = () => {
 
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch(
-      "https://socio-blog-backend.vercel.app/api/auth/login",
+      // "https://socio-blog-backend.vercel.app/api/auth/login",
+      "http://localhost:6001/api/auth/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

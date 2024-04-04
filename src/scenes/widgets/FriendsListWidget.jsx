@@ -13,7 +13,8 @@ const FriendListWidget = ({ userId }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `https://socio-blog-backend.vercel.app/api/users/${userId}/friends`,
+      // `https://socio-blog-backend.vercel.app/api/users/${userId}/friends`,
+      `http://localhost:6001/api/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

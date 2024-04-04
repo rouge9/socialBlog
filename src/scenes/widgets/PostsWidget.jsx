@@ -7,10 +7,12 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
+  console.log(posts);
 
   const getPosts = async () => {
     const response = await fetch(
-      "https://socio-blog-backend.vercel.app/api/posts",
+      // "https://socio-blog-backend.vercel.app/api/posts",
+      "http://localhost:6001/api/posts",
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -22,7 +24,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `https://socio-blog-backend.vercel.app/api/posts/${userId}/posts`,
+      // `https://socio-blog-backend.vercel.app/api/posts/${userId}/posts`,
+      `http://localhost:6001/api/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

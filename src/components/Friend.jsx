@@ -20,10 +20,12 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const medium = palette.neutral.medium;
 
   const isFriend = friends.find((friend) => friend._id === friendId);
+  console.log(isFriend);
 
   const patchFriend = async () => {
     const response = await fetch(
-      `https://socio-blog-backend.vercel.app/api/users/${_id}/friends/${friendId}`,
+      // `https://socio-blog-backend.vercel.app/api/users/${_id}/friends/${friendId}`,
+      `http://localhost:6001/api/users/${_id}/friends/${friendId}`,
       {
         method: "PATCH",
         headers: {
