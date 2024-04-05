@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   Box,
   Button,
@@ -15,14 +15,15 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
-  picture: yup.string(),
+  location: yup.string(),
+  occupation: yup.string(),
+  picture: yup.mixed(),
 });
 
 const loginSchema = yup.object().shape({
@@ -37,7 +38,7 @@ const initialValuesRegister = {
   password: "",
   location: "",
   occupation: "",
-  picture: "",
+  picture: null,
 };
 
 const initialValuesLogin = {
@@ -101,7 +102,7 @@ const Form = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    if (isLogin) await login(values, onSubmitProps);
+    // if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
 
@@ -131,7 +132,7 @@ const Form = () => {
             }}
           >
             {isRegister && (
-              <>
+              <Fragment>
                 <TextField
                   label="First Name"
                   onBlur={handleBlur}
@@ -156,24 +157,24 @@ const Form = () => {
                 />
                 <TextField
                   label="Location"
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.location}
                   name="location"
-                  error={Boolean(touched.location) && Boolean(errors.location)}
-                  helperText={touched.location && errors.location}
+                  // error={Boolean(touched.location) && Boolean(errors.location)}
+                  // helperText={touched.location && errors.location}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
                   label="Occupation"
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
                   name="occupation"
-                  error={
-                    Boolean(touched.occupation) && Boolean(errors.occupation)
-                  }
-                  helperText={touched.occupation && errors.occupation}
+                  // error={
+                  //   Boolean(touched.occupation) && Boolean(errors.occupation)
+                  // }
+                  // helperText={touched.occupation && errors.occupation}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <Box
@@ -209,7 +210,7 @@ const Form = () => {
                     )}
                   </Dropzone>
                 </Box>
-              </>
+              </Fragment>
             )}
 
             <TextField
