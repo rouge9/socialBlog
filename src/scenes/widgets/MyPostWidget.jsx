@@ -53,7 +53,6 @@ const MyPostWidget = ({ picturePath }) => {
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("discription", post);
-    // console.log(post);
     if (image) {
       // formData.append("picture", image);
       formData.append("picturePath", value);
@@ -112,13 +111,7 @@ const MyPostWidget = ({ picturePath }) => {
                   width="100%"
                   sx={{ "&:hover": { cursor: "pointer" } }}
                 >
-                  <input
-                    {...getInputProps()}
-                    type="file"
-                    onChange={() => {
-                      console.log("file selected");
-                    }}
-                  />
+                  <input {...getInputProps()} type="file" />
                   {!image ? (
                     <p>Add Image Here</p>
                   ) : (
