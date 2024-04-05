@@ -9,7 +9,8 @@ const UserImage = ({ image, size = "60px" }) => {
         height={size}
         alt="user"
         // src={`https://socio-blog-backend.vercel.app/assets/${image}`}
-        src={`http://localhost:6001/assets/${image}`}
+        // src={`http://localhost:6001/assets/${image}`}
+        src={image}
       />
     </Box>
   );

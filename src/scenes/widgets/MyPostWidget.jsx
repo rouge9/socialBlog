@@ -36,6 +36,18 @@ const MyPostWidget = ({ picturePath }) => {
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
+  const [value, setValue] = useState("");
+
+  const convertToBase64 = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e);
+    reader.onload = () => {
+      setValue(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+  };
 
   const handlePost = async () => {
     const formData = new FormData();
@@ -43,8 +55,8 @@ const MyPostWidget = ({ picturePath }) => {
     formData.append("discription", post);
     // console.log(post);
     if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
+      // formData.append("picture", image);
+      formData.append("picturePath", value);
     }
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/posts`,
@@ -86,7 +98,10 @@ const MyPostWidget = ({ picturePath }) => {
           <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
-            onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
+            onDrop={(acceptedFiles) => {
+              setImage(acceptedFiles[0]);
+              convertToBase64(acceptedFiles[0]);
+            }}
           >
             {({ getRootProps, getInputProps }) => (
               <FlexBetween>
@@ -97,7 +112,13 @@ const MyPostWidget = ({ picturePath }) => {
                   width="100%"
                   sx={{ "&:hover": { cursor: "pointer" } }}
                 >
-                  <input {...getInputProps()} />
+                  <input
+                    {...getInputProps()}
+                    type="file"
+                    onChange={() => {
+                      console.log("file selected");
+                    }}
+                  />
                   {!image ? (
                     <p>Add Image Here</p>
                   ) : (

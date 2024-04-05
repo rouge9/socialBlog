@@ -38,7 +38,7 @@ const initialValuesRegister = {
   password: "",
   location: "",
   occupation: "",
-  picture: null,
+  picture: "",
 };
 
 const initialValuesLogin = {
@@ -54,13 +54,26 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
+  const [image, setImage] = useState("");
+
+  const convertToBase64 = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+  };
 
   const register = async (values, onSubmitProps) => {
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append("picturePath", values.picture.name);
+    // formData.append("picturePath", values.picture.name);
+    formData.append("picturePath", image);
 
     const savedUserResponse = await fetch(
       // "https://socio-blog-backend.vercel.app/api/auth/register",
@@ -102,7 +115,7 @@ const Form = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    // if (isLogin) await login(values, onSubmitProps);
+    if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
 
@@ -183,7 +196,7 @@ const Form = () => {
                   borderRadius="5px"
                   p="1rem"
                 >
-                  <Dropzone
+                  {/* <Dropzone
                     acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
@@ -197,7 +210,11 @@ const Form = () => {
                         p="1rem"
                         sx={{ "&:hover": { cursor: "pointer" } }}
                       >
-                        <input {...getInputProps()} />
+                        <input
+                          {...getInputProps()}
+                          type="file"
+                          onChange={convertToBase64}
+                        />
                         {!values.picture ? (
                           <p>Add Picture Here</p>
                         ) : (
@@ -208,7 +225,12 @@ const Form = () => {
                         )}
                       </Box>
                     )}
-                  </Dropzone>
+                  </Dropzone> */}
+                  <input
+                    type="file"
+                    onChange={convertToBase64}
+                    accept="image/*"
+                  />
                 </Box>
               </Fragment>
             )}
