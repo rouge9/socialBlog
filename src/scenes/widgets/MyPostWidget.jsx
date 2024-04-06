@@ -16,6 +16,7 @@ import {
   Button,
   IconButton,
   useMediaQuery,
+  CircularProgress,
 } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import Dropzone from "react-dropzone";
@@ -37,6 +38,7 @@ const MyPostWidget = ({ picturePath }) => {
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const convertToBase64 = (e) => {
     const reader = new FileReader();
@@ -50,6 +52,7 @@ const MyPostWidget = ({ picturePath }) => {
   };
 
   const handlePost = async () => {
+    setLoading(true);
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("discription", post);
@@ -70,6 +73,7 @@ const MyPostWidget = ({ picturePath }) => {
     dispatch(setPosts({ posts }));
     setImage(null);
     setPost("");
+    setLoading(false);
   };
   return (
     <WidgetWrapper gap="0.5rem" p="0.5rem 1.1rem 1.1rem 1.1rem">
@@ -172,7 +176,7 @@ const MyPostWidget = ({ picturePath }) => {
         )}
 
         <Button
-          disabled={!post}
+          disabled={!post || loading}
           onClick={handlePost}
           sx={{
             color: palette.background.alt,
@@ -180,7 +184,15 @@ const MyPostWidget = ({ picturePath }) => {
             borderRadius: "3rem",
           }}
         >
-          POST
+          {loading ? (
+            <CircularProgress
+              color="error"
+              size={20}
+              style={{ display: loading ? "block" : "none" }}
+            />
+          ) : (
+            "Post"
+          )}
         </Button>
       </FlexBetween>
     </WidgetWrapper>
