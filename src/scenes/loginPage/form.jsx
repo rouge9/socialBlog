@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+import { API } from "../../constant/api";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -81,7 +82,7 @@ const Form = () => {
 
     const savedUserResponse = await fetch(
       // "https://socio-blog-backend.vercel.app/api/auth/register",
-      "http://localhost:6001/api/auth/register",
+      `${API}/api/auth/register`,
       {
         method: "POST",
         body: formData,
@@ -100,7 +101,7 @@ const Form = () => {
     setLoading(true);
     const loggedInResponse = await fetch(
       // "https://socio-blog-backend.vercel.app/api/auth/login",
-      "http://localhost:6001/api/auth/login",
+      `${API}/api/auth/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

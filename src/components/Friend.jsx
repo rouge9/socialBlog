@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setFollowers } from "../state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
+import { API } from "../constant/api";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const patchFriend = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/users/${_id}/friends/${friendId}`,
-      `http://localhost:6001/api/users/${_id}/friends/${friendId}`,
+      `${API}/api/users/${_id}/friends/${friendId}`,
       {
         method: "PATCH",
         headers: {

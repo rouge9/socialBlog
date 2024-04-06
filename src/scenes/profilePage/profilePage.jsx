@@ -8,6 +8,7 @@ import UserWidget from "../widgets/UserWidgets";
 import MyPostWidget from "../widgets/MyPostWidget";
 import PostsWidget from "../widgets/PostsWidget";
 import FriendsListWidget from "../widgets/FriendsListWidget";
+import { API } from "../../constant/api";
 
 export default function ProfilePage() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -18,7 +19,7 @@ export default function ProfilePage() {
   const getUser = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/users/${userId}`,
-      `http://localhost:6001/api/users/${userId}`,
+      `${API}/api/users/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${tokens}` },

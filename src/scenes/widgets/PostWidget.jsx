@@ -11,6 +11,7 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../state";
+import { API } from "../../constant/api";
 
 const PostWidget = ({
   postId,
@@ -37,7 +38,7 @@ const PostWidget = ({
   const patchLike = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/posts/${postId}/like`,
-      `http://localhost:6001/api/posts/${postId}/like`,
+      `${API}/api/posts/${postId}/like`,
       {
         method: "PATCH",
         headers: {

@@ -19,6 +19,7 @@ import FlexBetween from "../../components/FlexBetween";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../constant/api";
 
 export default function UserWidget({ userId, picturePath }) {
   const [user, setUser] = useState(null);
@@ -34,7 +35,7 @@ export default function UserWidget({ userId, picturePath }) {
   const getUser = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/users/${userId}`,
-      `http://localhost:6001/api/users/${userId}`,
+      `${API}/api/users/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

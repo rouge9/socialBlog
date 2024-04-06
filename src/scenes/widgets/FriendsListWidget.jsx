@@ -4,6 +4,7 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFollowers } from "../../state";
+import { API } from "../../constant/api";
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const FriendListWidget = ({ userId }) => {
   const getFriends = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/users/${userId}/friends`,
-      `http://localhost:6001/api/users/${userId}/friends`,
+      `${API}/api/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

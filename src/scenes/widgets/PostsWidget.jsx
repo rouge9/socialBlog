@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state";
 import PostWidget from "./PostWidget";
+import { API } from "../../constant/api";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const getPosts = async () => {
     const response = await fetch(
       // "https://socio-blog-backend.vercel.app/api/posts",
-      "http://localhost:6001/api/posts",
+      `${API}/api/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -25,7 +26,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const getUserPosts = async () => {
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/posts/${userId}/posts`,
-      `http://localhost:6001/api/posts/${userId}/posts`,
+      `${API}/api/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

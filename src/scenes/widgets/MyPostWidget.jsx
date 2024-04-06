@@ -25,6 +25,7 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state";
+import { API } from "../../constant/api";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const MyPostWidget = ({ picturePath }) => {
     }
     const response = await fetch(
       // `https://socio-blog-backend.vercel.app/api/posts`,
-      `http://localhost:6001/api/posts`,
+      `${API}/api/posts`,
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
