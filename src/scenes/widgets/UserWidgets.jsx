@@ -33,14 +33,10 @@ export default function UserWidget({ userId, picturePath }) {
   const mediumMain = palette.neutral.mediumMain;
 
   const getUser = async () => {
-    const response = await fetch(
-      // `https://socio-blog-backend.vercel.app/api/users/${userId}`,
-      `${API}/api/users/${userId}`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    const response = await fetch(`${API}/api/users/${userId}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     const data = await response.json();
     setUser(data);
